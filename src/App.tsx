@@ -1,16 +1,18 @@
 import './App.css';
-import React from 'react';
+import React, { Component } from 'react';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+interface stateProps {
+    value1: number,
+    value2: number
+}
+
+class App extends Component {
+  state: stateProps = {
       value1: 1,
       value2: 2,
-    }
   }
 
-  addValue(value1, value2) {
+  addValue(value1: number, value2: number) {
     return value1 + value2;
   }
 
