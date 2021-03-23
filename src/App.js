@@ -1,25 +1,63 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      val: "",
+      goods: [
+        {
+          title: "java",
+          price: 1000
+        },
+        {
+          title: "php",
+          price: 500
+        }, {
+          title: "python",
+          price: 800
+        }
+      ]
+
+    }
+  }
+
+  changeVal(ev) {
+    this.setState({
+      ...this.state,
+      val: ev.target.value
+    });
+  }
+
+  addGood(name) {
+    const good = {
+      title: name,
+      price: 666
+    }
+    this.setState({
+      goods: [
+        ...this.state.goods,
+        good
+      ]
+    });
+  }
+
+  render () {
+    return (
+        <div className="app">
+          <input type='text' value={this.state.val} onChange={(event) => this.changeVal(event)}></input>
+          <button onClick={(ev) => this.addGood(this.state.val)}>submit</button>
+          <ul>
+            {
+              this.state.goods.map(item => {
+                return (<li>{item.title}</li>)
+              })
+            }
+          </ul>
+        </div>
+    );
+  }
 }
 
 export default App;
